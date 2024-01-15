@@ -17,13 +17,14 @@ def getEpisode(episodeRaw):
         return "EP"+number
     return episodeRaw
 
-if len(sys.argv) <= 1:
+if len(sys.argv) <= 1 or len(sys.argv)>3:
     print('没有路径')
     sys.exit()
 
 path = sys.argv[1]
+category = sys.argv[2]
 
-if not path.startswith("/downloads/VCB-Studio"):
+if category != 'vcb':
     sys.exit()
 
 tcSubList = ['tc.srt', 'tc.ssa', 'tc.ass', 'tc.sub', 'tc.sbv', 'tc.smi', 'tc.vtt', 
@@ -34,7 +35,7 @@ accepted_extensions=['.mp4', '.avi', '.mov', '.mkv','.srt', '.ssa', '.ass', '.su
 files_and_dirs = os.listdir(path)
 ova = re.compile(r'\[ova\]', re.IGNORECASE)
 episode = re.compile(r'\[\d{2}\]')
-pattern = re.compile(r'\](.{5,}?)\[(ova|OVA|\d{2}|\d{3})\]')
+pattern = re.compile(r'\]([^\[]+)\[([^\]]+)\]')
 
 # 过滤出文件，排除目录
 for fileName in files_and_dirs:
