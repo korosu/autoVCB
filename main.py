@@ -4,7 +4,8 @@ if len(sys.argv) <= 1:
     print('没有路径')
     sys.exit()
 
-path = sys.argv[1]
+default = "/2t/VCB-Studio/"
+path = default + sys.argv[1]
 
 tcSubList = ['tc.srt', 'tc.ssa', 'tc.ass', 'tc.sub', 'tc.sbv', 'tc.smi', 'tc.vtt', 
             'jptc.srt', 'jptc.ssa', 'jptc.ass', 'jptc.sub', 'jptc.sbv', 'jptc.smi', 'jptc.vtt']
